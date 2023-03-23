@@ -12,7 +12,10 @@ This is a plugin to enable build notifications through [Pushover][], [Telegram][
 
 ## How to build
 
-Just execute a `mvn package` and upload the *hpi* package to your Jenkins instance.
+Just execute a `mvn package -DskipTests` and upload the *target/hpi* package to your Jenkins instance.
+
+#### Docker build example:
+    docker run -it --rm --name notifications-plugin -v ${pwd}:/usr/src/notifications-plugin -w /usr/src/notifications-plugin maven:3.3-jdk-8 mvn package -DskipTests
 
 ## How to configure
 
