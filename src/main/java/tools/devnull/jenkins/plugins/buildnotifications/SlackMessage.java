@@ -96,11 +96,10 @@ public class SlackMessage implements Message {
 
   public void send() {
     String[] ids = channelIds.split("\\s*,\\s*");
-    HttpClient client = new HttpClient();
+    String endpoint = "https://slack.com/api/chat.postMessage";
+    HttpClient client = NotifierHttpClient.create(endpoint);
     for (String channelId : ids) {
-      PostMethod post = new PostMethod(
-          "https://slack.com/api/chat.postMessage"
-      );
+      PostMethod post = new PostMethod(endpoint);
 
       post.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 

@@ -96,8 +96,9 @@ public class PushoverMessage implements Message {
 
   @Override
   public void send() {
-    HttpClient client = new HttpClient();
-    PostMethod post = new PostMethod("https://api.pushover.net/1/messages.json");
+    String endpoint = "https://api.pushover.net/1/messages.json";
+    HttpClient client = NotifierHttpClient.create(endpoint);
+    PostMethod post = new PostMethod(endpoint);
     post.setRequestBody(new NameValuePair[]{
         new NameValuePair("token", appToken),
         new NameValuePair("user", userToken),

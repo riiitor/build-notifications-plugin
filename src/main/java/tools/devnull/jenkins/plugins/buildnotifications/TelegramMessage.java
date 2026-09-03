@@ -96,12 +96,13 @@ public class TelegramMessage implements Message {
 
   public void send() {
     String[] ids = chatIds.split("\\s*,\\s*");
-    HttpClient client = new HttpClient();
+    String endpoint = String.format(
+        "https://api.telegram.org/bot%s/sendMessage",
+        botToken
+    );
+    HttpClient client = NotifierHttpClient.create(endpoint);
     for (String chatId : ids) {
-      PostMethod post = new PostMethod(String.format(
-          "https://api.telegram.org/bot%s/sendMessage",
-          botToken
-      ));
+      PostMethod post = new PostMethod(endpoint);
 
       post.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 

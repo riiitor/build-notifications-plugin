@@ -93,7 +93,7 @@ public class BotecoMessage implements Message {
 
   @Override
   public void send() {
-    HttpClient client = new HttpClient();
+    HttpClient client = NotifierHttpClient.create(endpoint);
     PostMethod post = new PostMethod(endpoint);
     post.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     Map<String, String> values = new HashMap<String, String>();
